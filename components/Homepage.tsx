@@ -17,7 +17,7 @@ const Homepage = (props: Props) => {
   console.log('*** userData', userData)
 
   const logout = async () => {
-    await axios.post("http://localhost:5000/logout", null, {
+    await axios.post("https://wiseloop-back.onrender.com/logout", null, {
       withCredentials: true, // Include cookies in the request
     });
     goTo(Login)

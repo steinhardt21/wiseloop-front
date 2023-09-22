@@ -11,7 +11,7 @@ export default function Home() {
   const [logged, setLogged] = useState(false); // New state variable
   const [userData, setUserData] = useState({}); // New state variable
     useEffect(() => {
-      axios.get("http://localhost:5000/isLoggedIn", {
+      axios.get("https://wiseloop-back.onrender.com/isLoggedIn", {
         withCredentials: true, // Include cookies in the request
       }).then((response) => {
         const data = response.data

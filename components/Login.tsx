@@ -14,7 +14,7 @@ const Login = () => {
       
       const createGoogleAuthLink = async () => {
         try {
-          const request = await fetch("http://localhost:5000/createAuthLink", {
+          const request = await fetch("https://wiseloop-back.onrender.com/createAuthLink", {
             method: "POST",
           });
           const response = await request.json();
