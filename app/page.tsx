@@ -1,12 +1,36 @@
 'use client'
 
 import Image from 'next/image'
-import { GoogleLogin } from '@react-oauth/google';
+import { Login, Homepage } from '@/components';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Router } from 'react-chrome-extension-router';
 
 export default function Home() {
+
+  const [logged, setLogged] = useState(false); // New state variable
+  const [userData, setUserData] = useState({}); // New state variable
+    useEffect(() => {
+      axios.get("http://localhost:5000/isLoggedIn", {
+        withCredentials: true, // Include cookies in the request
+      }).then((response) => {
+        const data = response.data
+        const loggedCheck = data.__type
+
+        if (loggedCheck === 'success') {
+          setLogged(true)
+          setUserData(data)
+        }
+      });
+  
+    }, []);
+ 
+
   return (
-    <main className='overflow-hidden'>
-      
-    </main>
+    <Router>
+      <main className='overflow-hidden'>
+        {logged ? <Homepage userData = {userData} /> : <Login />}
+      </main>
+    </Router>
   )
 }
